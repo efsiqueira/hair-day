@@ -1,13 +1,9 @@
-import { Schedule } from "./components"
-import { Agenda } from "./components/agenda/agenda"
+import { Home } from "./pages/home/home"
 
 export const App = () => {
 
   return (
-    <div className="flex p-6 gap-3 bg-gray-800">
-      <Schedule />
-      <Agenda />
-    </div>
+    <Home />
   )
 }
 
