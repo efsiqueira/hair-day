@@ -1,0 +1,10 @@
+{
+  "appointments": [
+    {
+      "id": "1",
+      "client": "Eduardo",
+      "time": "19:00",
+      "day": "2025-10-25"
+    }
+  ]
+}

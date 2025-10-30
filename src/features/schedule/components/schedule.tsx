@@ -1,5 +1,8 @@
-import { Button, DivSection, InputText, Text, TimeSection } from "../../../components"
+import { Button, DivSection, InputDate, InputText, Text, TimeSection } from "../../../components"
 import ClientIcon from "../../../assets/icons/client.svg?react"
+import CalendarIcon from "../../../assets/icons/calendar.svg?react"
+import { useEffect } from "react"
+import { fetcher } from "../../../helpers/api"
 
 const morningTimes = [
   { id: 1, value: "09:00" },
@@ -24,6 +27,13 @@ const nightTimes = [
 ]
 
 export const Schedule = () => {
+
+  useEffect(() => {
+    fetcher("appointments").then((response) => {
+      console.log("response: ", response)
+    })
+  }, [])
+
   return (
     <div className="flex flex-col gap-6 p-20 bg-gray-700 size-xlg h-full rounded-xl">
       <div className="flex flex-col gap-1">
@@ -36,11 +46,7 @@ export const Schedule = () => {
       </div>
       <form className="flex flex-col gap-8">
         <DivSection sectionTitle="Data">
-          <input className="
-            border border-solid border-gray-500 focus:border-yellow-base
-            bg-transparent outline-none h-12 rounded-lg text-gray-200 p-3
-          "
-          />
+          <InputDate icon={CalendarIcon} />
         </DivSection>
         <DivSection sectionTitle="Horários">
           <TimeSection label="Manhã" times={morningTimes} />
@@ -49,7 +55,7 @@ export const Schedule = () => {
         </DivSection>
         <div id="client" className="flex flex-col gap-2">
           <label className="text-gray-200 font-bold">Cliente</label>
-          <InputText required autoFocus icon={ClientIcon} />
+          <InputText placeholder="Nome do cliente" required autoFocus icon={ClientIcon} />
         </div>
         <Button>AGENDAR</Button>
       </form>

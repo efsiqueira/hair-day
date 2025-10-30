@@ -19,13 +19,13 @@ export const cardVariants = cva(`
         hover:bg-gray-500
         hover:cursor-pointer
       `,
-      disabled: `
+      selected: `
         bg-gray-700
         text-gray-500
         border-gray-600
         hover:cursor-not-allowed
         `,
-      selected: `
+      active: `
         bg-gray-600
         text-yellow-base
         border-yellow-base

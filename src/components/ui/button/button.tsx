@@ -3,13 +3,13 @@ import { Text } from "../text"
 
 export const buttonVariants = cva(`
   flex
-  items-center
-  justify-center
-  cursor-pointer
-  transition
-  rounded-lg
-  group
   gap-2
+  group
+  rounded-lg
+  transition
+  items-center
+  cursor-pointer
+  justify-center
 `, {
   variants: {
     variant: {

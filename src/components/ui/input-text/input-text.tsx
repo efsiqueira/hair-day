@@ -4,22 +4,22 @@ import { Icon } from "../icon"
 
 export const inputTextVariants = cva(`
   p-3
-  px-10
   w-full
   border
   rounded-lg
   border-solid
   outline-none
+  transition-colors
 `, {
   variants: {
     variant: {
       primary: "bg-transparent border-gray-500 focus:border-yellow-base"
     },
     size: {
-      md: "h-12"
+      md: "h-12 text-base"
     },
     disabled: {
-      true: "pointer-events-none"
+      true: "pointer-events-none opacity-50"
     },
   },
   defaultVariants: {
@@ -30,7 +30,7 @@ export const inputTextVariants = cva(`
 })
 
 export const inputTextIconVariants = cva(`
-  absolute top-1/2 left-3 -translate-y-1/2 cursor-pointer
+  left-3 absolute pointer-events-none
 `, {
   variants: {
     variant: {
@@ -55,8 +55,10 @@ interface InputTextProps extends VariantProps<typeof inputTextVariants>, Omit<Re
 }
 
 export const InputText = ({ icon, size, variant, disabled, className, ...props }: InputTextProps) => {
+  const inputPadding = icon ? "pl-10" : ""
+
   return (
-    <label className={inputTextWrapperVariants({ className })}>
+    <div className={inputTextWrapperVariants()}>
       {icon && (
         <Icon
           svg={icon}
@@ -65,12 +67,13 @@ export const InputText = ({ icon, size, variant, disabled, className, ...props }
       )}
       <input
         className={cx(
-          inputTextVariants({ size, disabled }),
-          textVariants({ className: "text-gray-200" }),
+          inputTextVariants({ size, disabled, variant }),
+          textVariants({ className: "text-gray-200 focus:placeholder-transparent" }),
+          inputPadding,
           className
         )}
         {...props}
       />
-    </label>
+    </div>
   )
 }
